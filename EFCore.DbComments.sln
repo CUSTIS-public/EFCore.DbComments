@@ -1,0 +1,35 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeAnalysis", "CodeAnalysis", "{1C048004-EFD9-44F7-BF26-4F6596DEB5B5}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCore.DbComments", "DbComments\EFCore.DbComments.csproj", "{82C40CD1-BFED-4D1B-879D-CE2323EBDB55}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCore.DbComments.Tests", "DbComments.Tests\EFCore.DbComments.Tests.csproj", "{7831A00B-2D94-4C92-8CD8-279F3B1E752A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{82C40CD1-BFED-4D1B-879D-CE2323EBDB55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82C40CD1-BFED-4D1B-879D-CE2323EBDB55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82C40CD1-BFED-4D1B-879D-CE2323EBDB55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82C40CD1-BFED-4D1B-879D-CE2323EBDB55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7831A00B-2D94-4C92-8CD8-279F3B1E752A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7831A00B-2D94-4C92-8CD8-279F3B1E752A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7831A00B-2D94-4C92-8CD8-279F3B1E752A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7831A00B-2D94-4C92-8CD8-279F3B1E752A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {54D91824-27D2-4544-9887-80FD96826811}
+	EndGlobalSection
+EndGlobal

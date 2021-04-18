@@ -1,0 +1,61 @@
+<Project>
+
+    <PropertyGroup>
+        <SolutionDirectory>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), EFCore.DbComments.sln))\</SolutionDirectory>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <CodeAnalysisRuleSet>..\CodeAnalysis\StyleCop.ruleset</CodeAnalysisRuleSet>
+        <RootNamespace>EFCore.DbComments</RootNamespace>
+        <PackageId>EFCore.DbComments</PackageId>
+        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+        <Version>0.0.1</Version>
+        <Authors>yuliatsisyk,deereeed,patrushin</Authors>
+        <Company>CUSTIS</Company>
+        <Copyright>(c) CUSTIS, 2020-2021</Copyright>
+        <PackageDescription>https://github.com/CUSTIS-public/EFCore.DbComments</PackageDescription>
+        <PackageProjectUrl>https://github.com/CUSTIS-public/EFCore.DbComments</PackageProjectUrl>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+            <_Parameter1>$(SolutionName).Tests</_Parameter1>
+        </AssemblyAttribute>
+    </ItemGroup>
+
+    <ItemGroup>
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+            <_Parameter1>DynamicProxyGenAssembly2</_Parameter1>
+        </AssemblyAttribute>
+    </ItemGroup>
+
+    <ItemGroup>
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+            <_Parameter1>$(AssemblyName).Tests</_Parameter1>
+        </AssemblyAttribute>
+    </ItemGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <WarningsAsErrors />
+        <NoWarn></NoWarn>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <WarningsAsErrors />
+        <NoWarn></NoWarn>
+        <DebugType>Full</DebugType>
+    </PropertyGroup>
+    <ItemGroup>
+        <None Include="$(SolutionDirectory)\\..\.editorconfig" Visible="false" />
+        <Compile Include="$(SolutionDirectory)\CodeAnalysis\GlobalSuppressions.cs" Visible="false" />
+        <PackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.0.321">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+</Project>

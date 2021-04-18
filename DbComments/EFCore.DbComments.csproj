@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>EFCore.DbComments</RootNamespace>
+    <PackageId>EFCore.DbComments</PackageId>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <Version>0.0.1</Version>
+    <Authors>yuliatsisyk,deereeed</Authors>
+    <Company>CUSTIS</Company>
+    <PackageDescription>https://github.com/CUSTIS-public/EFCore.DbComments</PackageDescription>
+    <PackageProjectUrl>https://github.com/CUSTIS-public/EFCore.DbComments</PackageProjectUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="StyleCop.Analyzers.Unstable" Version="1.2.0.333">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+
+</Project>
