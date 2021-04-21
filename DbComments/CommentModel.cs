@@ -47,10 +47,10 @@ namespace EFCore.DbComments
             /// <summary> Type </summary>
             public IEntityType EntityType { get; }
 
-            /// <summary> Attr list </summary>
+            /// <summary> Properties </summary>
             public IReadOnlyCollection<PropertyComment> EntityProperties { get; }
 
-            /// <summary> Attr list </summary>
+            /// <summary> Navigations </summary>
             public IReadOnlyCollection<NavigationComment> EntityNavigations { get; }
         }
 
@@ -116,12 +116,10 @@ namespace EFCore.DbComments
         }
 
         /// <summary> Comments on the model </summary>
-        public void AddCommentsToModel()
+        private void AddCommentsToModel()
         {
             foreach (var entity in EntityComments)
             {
-                //А это вот хитрость ради псевдо-Keyless
-                //                if ((entity.EntityType as IConventionEntityType)?.GetConfigurationSource() != ConfigurationSource.Explicit)
                 if (entity.EntityType.FindPrimaryKey() is null && ((IConventionEntityType)entity.EntityType).IsKeyless == false)
                 {
                     continue;
@@ -130,9 +128,9 @@ namespace EFCore.DbComments
                 if (entity.EntityType.IsOwned())
                 {
                     var entityTypeBuilder = ModelBuilder.Entity(entity.EntityType.FindOwnership().PrincipalEntityType.ClrType);
-                    var owmerEntityComment = EntityComments.SingleOrDefault(x => x.EntityType == entityTypeBuilder.Metadata);
+                    var ownerEntityComment = EntityComments.SingleOrDefault(x => x.EntityType == entityTypeBuilder.Metadata);
 
-                    CommentOnColumns(entity, property => CommentOwned(entityTypeBuilder, entity, property, owmerEntityComment));
+                    CommentOnColumns(entity, property => CommentOwned(entityTypeBuilder, entity, property, ownerEntityComment));
                 }
                 else
                 {
@@ -175,7 +173,7 @@ namespace EFCore.DbComments
 
         private static void CommentOwned(
             EntityTypeBuilder entityTypeBuilder, EntityComment entity, PropertyComment property,
-            EntityComment? owmerEntityComment)
+            EntityComment? ownerEntityComment)
         {
             foreach (var navigation in entityTypeBuilder.Metadata.GetNavigations().Where(x => x.TargetEntityType == entity.EntityType))
             {
@@ -192,7 +190,7 @@ namespace EFCore.DbComments
                         .Property(property.Property.Name);
                 }
 
-                var navigationComment = owmerEntityComment?.EntityNavigations.SingleOrDefault(x => x.Navigation == navigation)?.Comment;
+                var navigationComment = ownerEntityComment?.EntityNavigations.SingleOrDefault(x => x.Navigation == navigation)?.Comment;
                 var comment = navigationComment is null ? property.Comment : $"{navigationComment}:{property.Comment}";
 
                 ownedPropertyBuilder.HasComment(comment);
