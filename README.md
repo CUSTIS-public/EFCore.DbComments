@@ -6,7 +6,7 @@ EFCore.DbComment
 Add comment for objects (table, column) from code to database.
 You can use it with xml comment summary or Description clr attr.
 
-# Using comments from the XmlDoc
+# Using comments from XmlDoc
 
 ```csharp
 /// <summary>User</summary>
@@ -26,7 +26,7 @@ And then you can do ```dotnet ef migrations add ...```
 
 Don't forget to [enable](https://docs.microsoft.com/ru-ru/dotnet/csharp/codedoc) XML documentation
 
-# Using for postgres and [Description] attr
+# Using comments from [Description] attr
 
 ```csharp
 [Description("User")]
