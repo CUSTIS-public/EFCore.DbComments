@@ -118,7 +118,7 @@ namespace EFCore.DbComments
 
                 foreach (var entity in commentModel.EntityComments)
                 {
-                    var entityComment = GetEntityComment(commentDict, entity.EntityType.ClrType);
+                    var entityComment = GetEntityComment(commentDict, entity.EntityType);
 
                     if (entityComment is not null && (entity.InternalComment is null || entityComment.Value.HolderType.IsSubclassOf(entity.InternalComment.Value.HolderType)))
                     {
@@ -169,16 +169,19 @@ namespace EFCore.DbComments
             }
         }
 
-        private static CommentModel.CommentFromType? GetEntityComment(IReadOnlyDictionary<string, string?> commentDict, Type type)
+        private static CommentModel.CommentFromType? GetEntityComment(IReadOnlyDictionary<string, string?> commentDict, IEntityType type)
         {
-            if (commentDict.TryGetValue($"T:{type.FullName}", out var comment) && !string.IsNullOrEmpty(comment))
+            if (type.BaseType is not null)
             {
-                return new CommentModel.CommentFromType(comment, type);
+                return GetEntityComment(commentDict, type.BaseType);
             }
 
-            return type.BaseType is null
-                       ? null
-                       : GetEntityComment(commentDict, type.BaseType);
+            if (commentDict.TryGetValue($"T:{type.ClrType.FullName}", out var comment) && !string.IsNullOrEmpty(comment))
+            {
+                return new CommentModel.CommentFromType(comment, type.ClrType);
+            }
+
+            return null;
         }
 
         private static string? GetPropertyComment(IReadOnlyDictionary<string, string?> commentDict, Type type, IPropertyBase property)

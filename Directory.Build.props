@@ -12,7 +12,7 @@
         <RootNamespace>EFCore.DbComments</RootNamespace>
         <PackageId>EFCore.DbComments</PackageId>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-        <Version>0.0.1</Version>
+        <Version>1.0.0</Version>
         <Authors>yuliatsisyk,deereeed,patrushin</Authors>
         <Company>CUSTIS</Company>
         <Copyright>(c) CUSTIS, 2020-2021</Copyright>
