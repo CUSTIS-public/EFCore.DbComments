@@ -31,7 +31,7 @@ namespace EFCore.DbComments
         internal class EntityComment
         {
             /// <summary> Comment for entity </summary>
-            public EntityComment(IEntityType entityType)
+            public EntityComment(IMutableEntityType entityType)
             {
                 EntityType = entityType;
                 EntityProperties = entityType.GetProperties().Select(p => new PropertyComment(p)).ToImmutableArray();
@@ -45,7 +45,7 @@ namespace EFCore.DbComments
             internal CommentFromType? InternalComment { get; set; }
 
             /// <summary> Type </summary>
-            public IEntityType EntityType { get; }
+            public IMutableEntityType EntityType { get; }
 
             /// <summary> Properties </summary>
             public IReadOnlyCollection<PropertyComment> EntityProperties { get; }
@@ -75,7 +75,7 @@ namespace EFCore.DbComments
         internal class PropertyComment
         {
             /// <summary> Comment for property </summary>
-            public PropertyComment(IProperty property)
+            public PropertyComment(IMutableProperty property)
             {
                 Property = property;
             }
@@ -84,14 +84,14 @@ namespace EFCore.DbComments
             public string? Comment { get; set; }
 
             /// <summary> Property </summary>
-            public IProperty Property { get; }
+            public IMutableProperty Property { get; }
         }
 
         /// <summary> Comment for navigation </summary>
         internal class NavigationComment
         {
             /// <summary> Comment for navigation </summary>
-            public NavigationComment(INavigation navigation)
+            public NavigationComment(IMutableNavigation navigation)
             {
                 Navigation = navigation;
             }
@@ -100,7 +100,7 @@ namespace EFCore.DbComments
             public string? Comment { get; set; }
 
             /// <summary> Navigation </summary>
-            public INavigation Navigation { get; }
+            public IMutableNavigation Navigation { get; }
         }
 
         /// <summary> Comments the model </summary>
@@ -127,7 +127,7 @@ namespace EFCore.DbComments
 
                 if (entity.EntityType.IsOwned())
                 {
-                    var entityTypeBuilder = ModelBuilder.Entity(entity.EntityType.FindOwnership().PrincipalEntityType.ClrType);
+                    var entityTypeBuilder = ModelBuilder.Entity(entity.EntityType.FindOwnership()!.PrincipalEntityType.ClrType);
                     var ownerEntityComment = EntityComments.SingleOrDefault(x => x.EntityType == entityTypeBuilder.Metadata);
 
                     CommentOnColumns(entity, property => CommentOwned(entityTypeBuilder, entity, property, ownerEntityComment));
@@ -197,16 +197,16 @@ namespace EFCore.DbComments
             }
         }
 
-        private void CommentDiscriminator(IEntityType entityType, EntityTypeBuilder entityTypeBuilder)
+        private void CommentDiscriminator(IMutableEntityType entityType, EntityTypeBuilder entityTypeBuilder)
         {
-            var discriminatorColumn = entityType.GetDiscriminatorProperty();
+            var discriminatorColumn = entityType.BaseType?.GetDiscriminatorPropertyName();
 
             if (discriminatorColumn is null)
             {
                 return;
             }
 
-            var propertyTypeBuilder = entityTypeBuilder.Property(discriminatorColumn.Name);
+            var propertyTypeBuilder = entityTypeBuilder.Property(discriminatorColumn);
 
             propertyTypeBuilder.HasComment(DiscriminatorComment);
         }
