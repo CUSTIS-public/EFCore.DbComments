@@ -1,7 +1,7 @@
 EFCore.DbComment
 
-[![latest version](https://img.shields.io/nuget/v/EFCore.DbComments)](https://www.nuget.org/packages/EFCore.DbComments/)
-[![downloads](https://img.shields.io/nuget/dt/EFCore.DbComments)](https://www.nuget.org/packages/EFCore.DbComments/)
+[![latest version](https://img.shields.io/nuget/v/CUSTIS.EFCore.DbComments)](https://www.nuget.org/packages/CUSTIS.EFCore.DbComments/)
+[![downloads](https://img.shields.io/nuget/dt/CUSTIS.EFCore.DbComments)](https://www.nuget.org/packages/CUSTIS.EFCore.DbComments/)
 
 Add comment for objects (table, column) from code to database.
 You can use it with xml comment summary or Description clr attr.
@@ -56,4 +56,4 @@ To copy XmlDocs, you need to add section to your startup project ```.csproj```  
  ```
  
 # Links
-* Nuget - https://www.nuget.org/packages/EFCore.DbComments/
+* Nuget - https://www.nuget.org/packages/CUSTIS.EFCore.DbComments/
