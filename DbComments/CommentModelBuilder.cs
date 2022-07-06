@@ -84,7 +84,7 @@ namespace EFCore.DbComments
                         continue;
                     }
 
-                    if (property.Property.PropertyInfo.GetCustomAttribute(typeof(DescriptionAttribute)) is DescriptionAttribute { Description: not null } propDescriptionAttr)
+                    if (property.Property.PropertyInfo!.GetCustomAttribute(typeof(DescriptionAttribute)) is DescriptionAttribute { Description: not null } propDescriptionAttr)
                     {
                         property.Comment = propDescriptionAttr.Description;
                     }
@@ -169,7 +169,7 @@ namespace EFCore.DbComments
             }
         }
 
-        private static CommentModel.CommentFromType? GetEntityComment(IReadOnlyDictionary<string, string?> commentDict, IEntityType type)
+        private static CommentModel.CommentFromType? GetEntityComment(IReadOnlyDictionary<string, string?> commentDict, IReadOnlyEntityType type)
         {
             if (type.BaseType is not null)
             {
@@ -184,7 +184,7 @@ namespace EFCore.DbComments
             return null;
         }
 
-        private static string? GetPropertyComment(IReadOnlyDictionary<string, string?> commentDict, Type type, IPropertyBase property)
+        private static string? GetPropertyComment(IReadOnlyDictionary<string, string?> commentDict, Type type, IReadOnlyPropertyBase property)
         {
             if (commentDict.TryGetValue($"P:{type.FullName}.{property.Name}", out var comment) && !string.IsNullOrEmpty(comment))
             {
