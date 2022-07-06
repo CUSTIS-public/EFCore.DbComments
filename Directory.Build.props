@@ -9,8 +9,8 @@
         <Nullable>enable</Nullable>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <CodeAnalysisRuleSet>..\CodeAnalysis\StyleCop.ruleset</CodeAnalysisRuleSet>
-        <RootNamespace>EFCore.DbComments</RootNamespace>
-        <PackageId>EFCore.DbComments</PackageId>
+        <RootNamespace>CUSTIS.EFCore.DbComments</RootNamespace>
+        <PackageId>CUSTIS.EFCore.DbComments</PackageId>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
         <Version>6.0.1</Version>
         <Authors>yuliatsisyk,deereeed,patrushin</Authors>
