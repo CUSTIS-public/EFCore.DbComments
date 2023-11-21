@@ -139,7 +139,7 @@ namespace EFCore.DbComments
 
                     if (string.IsNullOrEmpty(entity.EntityType.GetComment()) && !string.IsNullOrEmpty(entity.Comment))
                     {
-                        entityTypeBuilder.HasComment(entity.Comment);
+                        entityTypeBuilder.ToTable(t => t.HasComment(entity.Comment));
                     }
 
                     CommentDiscriminator(entity.EntityType, entityTypeBuilder);

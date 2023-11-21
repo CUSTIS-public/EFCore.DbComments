@@ -5,17 +5,17 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <CodeAnalysisRuleSet>..\CodeAnalysis\StyleCop.ruleset</CodeAnalysisRuleSet>
         <RootNamespace>CUSTIS.EFCore.DbComments</RootNamespace>
         <PackageId>CUSTIS.EFCore.DbComments</PackageId>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-        <Version>6.0.1</Version>
-        <Authors>yuliatsisyk,deereeed,patrushin</Authors>
+        <Version>8.0.0</Version>
+        <Authors>yuliatsisyk,deereeed,ptrushin</Authors>
         <Company>CUSTIS</Company>
-        <Copyright>(c) CUSTIS, 2020-2021</Copyright>
+        <Copyright>(c) CUSTIS, 2020-2023</Copyright>
         <PackageDescription>https://github.com/CUSTIS-public/EFCore.DbComments</PackageDescription>
         <PackageProjectUrl>https://github.com/CUSTIS-public/EFCore.DbComments</PackageProjectUrl>
     </PropertyGroup>
