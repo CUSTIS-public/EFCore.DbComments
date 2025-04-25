@@ -125,6 +125,11 @@ namespace EFCore.DbComments
                     continue;
                 }
 
+                if (entity.EntityType.GetViewName() != null)
+                {
+                    continue;
+                }
+
                 if (entity.EntityType.IsOwned())
                 {
                     var entityTypeBuilder = ModelBuilder.Entity(entity.EntityType.FindOwnership()!.PrincipalEntityType.ClrType);
